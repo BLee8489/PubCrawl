@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import NavbarLogin from "../Components/NavbarLogin";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
   const [form, setForm] = useState();
+  const history = useHistory();
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,9 +21,12 @@ const Register = () => {
     }
   };
 
+  const logIn = () => {
+    history.push("/");
+  };
+
   return (
     <div>
-      <NavbarLogin />
       <form className="container" onSubmit={submit}>
         <label>Email</label>
         <input onChange={onChange} type="text" name="email" />
@@ -32,7 +36,7 @@ const Register = () => {
         <input onChange={onChange} type="text" name="passwordCheck" />
         <label>Display Name</label>
         <input onChange={onChange} type="text" name="displayName" />
-        <input type="submit" />
+        <input onClick={logIn} type="submit" />
       </form>
     </div>
   );
